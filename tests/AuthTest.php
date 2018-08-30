@@ -23,7 +23,8 @@ class AuthTest extends TestCase
            'region' => 'us-east-1',
 
            'credentials' => [
-               'key'
+               'key',
+               'secret'
 
            ],           
            'version' => 'latest']);
