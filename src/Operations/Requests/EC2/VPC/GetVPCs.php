@@ -2,6 +2,7 @@
 namespace FuriosoJack\MasterModelsAWS\Operations\Requests\EC2\VPC;
 
 use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
+use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
  /**
  * Parametros para Obtener las VPCS
  *
@@ -16,5 +17,14 @@ class GetVPCs extends BasicRequest {
     protected function getMethodName(): String
     {
         return 'describeVpcs';       
+    }
+    
+    protected function builderParameter(): ParameterBasic
+    {        
+        return new  ParameterBasic([
+            'optional' => [
+                'Filters'
+            ]
+        ]);
     }
 }

@@ -39,19 +39,6 @@ trait TraitConexionManager
         return $this->clientConexion;
     }
 
-    /*
-     * Debe devolver el nombre de metodo que se desea ejecutar
-     * @return string nombre del metodo a ejecutar en el cliente
-     */
-    protected abstract function getMethodName(): String;
-  
-
-
+    
    
-
-
-
-
-
-
 }

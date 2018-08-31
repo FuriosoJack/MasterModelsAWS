@@ -8,6 +8,7 @@ use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
  * @version 1.0.0
  * @access public
+ * 
  */
 trait TraitParameterManager {
     
@@ -21,7 +22,7 @@ trait TraitParameterManager {
      * Añade el objeto de los parametros
      * @param ParameterBasic $parameter
      */
-    public function setPrameter(ParameterBasic $parameter)
+    protected function setParameter(ParameterBasic $parameter)
     {
         $this->parameter = $parameter;
     }
@@ -35,4 +36,11 @@ trait TraitParameterManager {
     {
         return $this->parameter;
     }
+    
+    /**
+     * Metodo encargado de devolver el parameter que se va a usar
+     * Este metodo deber ser sobrecargado por los hijos
+     * @return FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic $parameter
+     */
+    protected abstract function builderParameter():ParameterBasic;
 }

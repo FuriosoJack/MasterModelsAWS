@@ -37,7 +37,10 @@ namespace FuriosoJack\MasterModelsAWS\Core\Requests;
  */
 trait TraitRequestManager {
    
-    
+    protected function buildRequest()
+    {
+      
+    }
   
             
     

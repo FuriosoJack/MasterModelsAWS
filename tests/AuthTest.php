@@ -35,19 +35,16 @@ class AuthTest extends TestCase
             ],           
            'version' => getenv('AWS_VERSION')]);
        
-        //Se crean parametros 
-       $parameters = new \FuriosoJack\MasterModelsAWS\Operations\Requests\EC2\VPC\Parameters\ParameterGetVPC();
-       //Se añaden los parametros
-       $parameters->addValueForParameter('Filters', []);
-       
        //Se crea la solicitud con el cliente
-       $getVp = new \FuriosoJack\MasterModelsAWS\Operations\Requests\EC2\VPC\GetVPCs($client);
-       //Se le ingresa el parameter
-       $getVp->setPrameter($parameters);
-       $getVp->sendRequest();
-       
+       $getVp = new \FuriosoJack\MasterModelsAWS\Operations\Requests\EC2\VPC\GetVPCs($client);     
+       $getVp->run([
+           'Filters' => [[
+               'Name' => 'tag-value',
+               'Values' => ['default']
+           ]]
+       ]);
        if(!$getVp->thereAreErrors()){
-           var_dump($getVp->getResonse()->hasKey('vpcs'));
+           var_dump($getVp->getResonse()->get('Vpcs'));
        }else{
            var_dump($getVp->getErrors());
        }

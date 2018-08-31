@@ -41,7 +41,7 @@ class ParameterBasic {
     protected $parametersOptional;
     
     
-    public function __construct()
+    public function __construct(array $parameters = [])
     {
         //Se inicializan los parametros
         $this->parameters = [];
@@ -49,25 +49,25 @@ class ParameterBasic {
         $this->parametersOptional = [];       
         
         
-        //Se establecen los parametros requeridos
-        $this->initParametersRequired();
+        //Si exite el en los parametros el key required y es el valor de este es un array    
+        if(isset($parameters['required']) && is_array($parameters['required'])){
+           //Se establecen los parametros requeridos
+           $this->parametersRequired = $parameters['required'];
+        }
+        
+        //Si exite el en los parametros el key optional y es el valor de este es un array    
+        if(isset($parameters['optional']) && is_array($parameters['optional'])){
+           //Se establecen los parametros opcionales
+           $this->parametersOptional = $parameters['optional'];
+        }        
+        
         
         //Se inicia los parametros faltantes con todos los requeridos
-        //Se combina los paramtros requeridos con los obcionales
-        $this->parametersMissing = array_merge($this->parametersOptional,$this->parametersRequired);
+        
+        $this->parametersMissing = $this->parametersRequired;
     }
     
-    /**
-     * Establece los parametros requeridos para ejecutar la solicitud
-     * Este es el metodo que los hijos deben sobrescribir para obtener los parametros.
-     * Por defecto no establece nada.
-     * 
-     */
-    protected function initParametersRequired()
-    {
-                      
-    }
-    
+       
     /**
      * Verifica si el parametro es requerido para hacer la solicitud
      * @param string $paramName key del parametro
@@ -132,9 +132,14 @@ class ParameterBasic {
           throw new \Exception("Parametro[".$paramerName."] Incorrecto!!");
         }   
         
-        //Si no esta en los parametros que hacen falta, quiere decir que ya esta ingresado
+        //Si no esta en los parametros que hacen falta
         if(!$this->checkParameterIsMissing($paramerName)){
-            throw new \Exception("Parametro[".$paramerName."] Ya ingresado!!");
+            
+            //Si no es opcional quiere decir que hace falta
+            if(!$this->checkParameterIsOptional($paramerName)){
+                throw new \Exception("Parametro[".$paramerName."] Ya ingresado!!");
+            }
+            
         }
         
         //Se remueve parametro de los parametros faltantes
