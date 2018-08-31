@@ -29,19 +29,18 @@ namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object;
 use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
 use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
 /**
- * Description of GetObject
+ * Description of GetObjectTagging
  *
  * @package FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object 
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
  * @version 
  * @access 
  */
-class GetObject extends BasicRequest{
-    
+class GetObjectTagging extends BasicRequest{
    
     protected function getMethodName():string
     {
-        return 'getObject';
+       return 'getObjectTagging';
     }
     
     protected function builderParameter(): ParameterBasic
@@ -51,10 +50,9 @@ class GetObject extends BasicRequest{
                 'Bucket',
                 'Key'
             ],
-            'optional' => [
+            'optional' =>[
                 'VersionId'
             ]
         ]);
     }
-    
 }

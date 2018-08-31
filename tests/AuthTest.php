@@ -5,7 +5,9 @@ use PHPUnit\Framework\TestCase;
 use FuriosoJack\MasterModelsAWS\Operations\Clients\EC2;
 use FuriosoJack\MasterModelsAWS\Operations\Clients\DirectoryService;
 use FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\PutObject;
+use FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\GetObject;
 use Dotenv\Dotenv;
+
 /**
  * Class AuthTest
  * @author Juan Diaz - FuriosoJack <iam@furiosojack.com>
@@ -14,6 +16,7 @@ class AuthTest extends TestCase
 {
 
     private $pathFile;
+    private $fileNameUp;
     
     public function setUp()
     {
@@ -24,8 +27,9 @@ class AuthTest extends TestCase
         $dotenv->load();
         
         $apthFile = __DIR__;
-        $apthFile = realpath($apthFile . "../../../../../Pictures/Captura");  
-        $this->pathFile = $apthFile . rand(1, 15) . ".png";
+        $this->pathFile = realpath($apthFile . "../../../../../Pictures/Captura.png");  
+       
+        $this->fileNameUp = rand(1,60). 'Captura.png';
     }
     /**
      * Disabled test
@@ -72,20 +76,47 @@ class AuthTest extends TestCase
         $reques = new PutObject($client);
         $reques->run([
             'Bucket' => getenv('AWS_S3_BUCKET'),
-            'Key' => 'album/archivo.png',
-            'SourceFile' => $this->pathFile,
-            'Metadata' => [
-                'namePerson' => 'Codigo de javascript'
-            ]
+            'Key' => 'album/'. $this->fileNameUp,
+            'SourceFile' => $this->pathFile
         ]);
         
-        if(!$reques->thereAreErrors()){
-            var_dump($reques->getResonse());
+        if($reques->thereAreErrors()){
+            var_dump($reques->getErrors());
             $this->assertTrue(false);
         }else{
             $this->assertTrue(true);
         }
     }
+    
+    public function testS3Get()
+    {
+          //Se crea el cliente
+        $client = new \FuriosoJack\MasterModelsAWS\Operations\Clients\S3([
+           'region' => getenv('AWS_REGION'),
+           'credentials' => [
+                'key' => getenv('AWS_S3_KEY'),
+                'secret' => getenv('AWS_S3_SECERT')
+            ],           
+           'version' => '2006-03-01']);
+        
+        $resquest = new \FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\GetObjectTagging($client);
+        $resquest->run([
+            'Bucket' => getenv('AWS_S3_BUCKET'),
+            'Key' => 'album/20Captura.png',            
+        ]);
+        
+        if($resquest->thereAreErrors()){
+            var_dump($resquest->getErrors());
+            $this->assertTrue(false);
+        }else{
+            var_dump($resquest->getResonse());
+            $this->assertTrue(true);
+        }
+        
+    }
+    
+    
+    
 
 
 }
