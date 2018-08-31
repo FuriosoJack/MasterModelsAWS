@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 use FuriosoJack\MasterModelsAWS\Operations\Clients\EC2;
 use FuriosoJack\MasterModelsAWS\Operations\Clients\DirectoryService;
+use FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\PutObject;
 use Dotenv\Dotenv;
 /**
  * Class AuthTest
@@ -12,6 +13,8 @@ use Dotenv\Dotenv;
 class AuthTest extends TestCase
 {
 
+    private $pathFile;
+    
     public function setUp()
     {
         parent::setUp();
@@ -19,6 +22,10 @@ class AuthTest extends TestCase
         //Cargar las configuraciones del entorno
         $dotenv = new Dotenv(__DIR__);
         $dotenv->load();
+        
+        $apthFile = __DIR__;
+        $apthFile = realpath($apthFile . "../../../../../Pictures/Captura");  
+        $this->pathFile = $apthFile . rand(1, 15) . ".png";
     }
     /**
      * Disabled test
@@ -43,17 +50,41 @@ class AuthTest extends TestCase
                'Values' => ['default']
            ]]
        ]);
-       if(!$getVp->thereAreErrors()){
-           var_dump($getVp->getResonse()->get('Vpcs'));
+       if(!$getVp->thereAreErrors()){           
+           $this->assertTrue($getVp->getResonse()->hasKey('Vpcs'));
        }else{
            var_dump($getVp->getErrors());
        }
-       
-       
-            
-       
-       
-
+    }
+    
+    public function testS3Upload()
+    {
+             
+        //Se crea el cliente
+        $client = new \FuriosoJack\MasterModelsAWS\Operations\Clients\S3([
+           'region' => getenv('AWS_REGION'),
+           'credentials' => [
+                'key' => getenv('AWS_S3_KEY'),
+                'secret' => getenv('AWS_S3_SECERT')
+            ],           
+           'version' => '2006-03-01']);
+        
+        $reques = new PutObject($client);
+        $reques->run([
+            'Bucket' => getenv('AWS_S3_BUCKET'),
+            'Key' => 'album/archivo.png',
+            'SourceFile' => $this->pathFile,
+            'Metadata' => [
+                'namePerson' => 'Codigo de javascript'
+            ]
+        ]);
+        
+        if(!$reques->thereAreErrors()){
+            var_dump($reques->getResonse());
+            $this->assertTrue(false);
+        }else{
+            $this->assertTrue(true);
+        }
     }
 
 

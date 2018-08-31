@@ -13,7 +13,7 @@ use FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic;
  */
 class DirectoryService extends ClientBasic{
 
-  public function getClientClass()
+  protected function getClientClass()
   {
     return DirectoryServiceClient::class;
   }

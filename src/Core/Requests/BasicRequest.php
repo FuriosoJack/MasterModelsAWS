@@ -56,7 +56,7 @@ class BasicRequest
     
     
     //////////////////////////
-    // Metodos a aborcargar por los hijos
+    // Metodos a sobrecargar por los hijos
     //////////////////////
     
     /**

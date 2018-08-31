@@ -14,7 +14,7 @@ use FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic;
  */
 class EC2 extends ClientBasic{
 
-  public function getClientClass()
+  protected function getClientClass()
   {
     return Ec2Client::class;
   }
