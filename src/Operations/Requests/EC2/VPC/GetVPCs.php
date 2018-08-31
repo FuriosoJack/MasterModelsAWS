@@ -12,6 +12,7 @@ use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
  */
 class GetVPCs extends BasicRequest {
     
+    
     protected function getMethodName(): String
     {
         return 'describeVpcs';       

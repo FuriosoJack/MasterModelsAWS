@@ -1,6 +1,6 @@
 <?php
 namespace FuriosoJack\MasterModelsAWS\Core\Requests;
-use FuriosoJack\LaraException\ExceptionFather;
+
 /**
  * Clase de estructura basica de los parametros de una solicitud
  * contiene los metodos necesarios para asegurar que la conexion se realizar 

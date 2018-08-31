@@ -34,7 +34,7 @@ trait TraitConexionManager
      * Retorna la conexion
      * @return App\Repository\Structures\Amazon\Abstracts\AbstractClientAmazon $conexion
      */
-    public function getClientConexion(): ClientBasic
+    protected function getClientConexion(): ClientBasic
     {
         return $this->clientConexion;
     }

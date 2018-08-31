@@ -44,9 +44,18 @@ class AuthTest extends TestCase
        $getVp = new \FuriosoJack\MasterModelsAWS\Operations\Requests\EC2\VPC\GetVPCs($client);
        //Se le ingresa el parameter
        $getVp->setPrameter($parameters);
+       $getVp->sendRequest();
+       
+       if(!$getVp->thereAreErrors()){
+           var_dump($getVp->getResonse()->hasKey('vpcs'));
+       }else{
+           var_dump($getVp->getErrors());
+       }
        
        
-       var_dump($getVp->sendRequest());
+            
+       
+       
 
     }
 

@@ -1,8 +1,6 @@
 <?php
 namespace FuriosoJack\MasterModelsAWS\Core\Requests;
 
-use FuriosoJack\MasterModelsAWS\Core\Requests\TraitConexionManager;
-use FuriosoJack\MasterModelsAWS\Core\Requests\TraitParameterManager;
 
 /**
  * Clase de la estrutura basica de una solicitud al cliente de AWS
@@ -16,6 +14,9 @@ class BasicRequest
 {
     use TraitConexionManager;
     use TraitParameterManager;
+    use TraitErrorsManager;
+    use TraitResponseManager;
+    use TraitRequestManager;
     
     public function __construct($conexion = null)
     {
@@ -34,9 +35,14 @@ class BasicRequest
      */
     public function sendRequest()
     {
-        //Llama al metodo del objeto del cliente AWS, para llamarlo se usa el nombre del metodo y se pasa los parametros necesarios para el funcionamiento
-        return call_user_func([$this->getClientConexion()
-                ->getClientAWS(),$this->getMethodName()]);       
-
+        try {
+            //Llama al metodo del objeto del cliente AWS, para llamarlo se usa el nombre del metodo y se pasa los parametros necesarios para el funcionamiento
+            $this->setResponse(call_user_func([$this->getClientConexion()
+                    ->getClientAWS(),$this->getMethodName()]));
+        } catch (\Exception $e) {
+            //Se setean los errores
+            $this->setErros($e->getMessage());
+        }
+        
     }
 }
