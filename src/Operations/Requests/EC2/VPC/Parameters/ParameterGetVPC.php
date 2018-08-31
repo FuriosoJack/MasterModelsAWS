@@ -14,7 +14,7 @@ class ParameterGetVPC extends ParameterBasic{
  
     protected function initParametersRequired()
     {
-        $this->parametersRequired = [
+        $this->parametersOptional = [
             'Filters'
         ];
     }

@@ -17,7 +17,7 @@ class BasicRequest
     use TraitConexionManager;
     use TraitParameterManager;
     
-    public function __construct(ClientBasic $conexion = null)
+    public function __construct($conexion = null)
     {
         $this->clientConexion = $conexion;
     }
