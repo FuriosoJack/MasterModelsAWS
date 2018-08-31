@@ -3,7 +3,7 @@ namespace FuriosoJack\MasterModelsAWS\Core\Requests;
 
 
 /**
- * Clase de la estrutura basica de una solicitud al cliente de AWS
+ * Estrutura basica de una solicitud hacia un cliente AWS
  *
  * @package FuriosoJack\MasterModelsAWS\Core\Requests
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
@@ -12,12 +12,19 @@ namespace FuriosoJack\MasterModelsAWS\Core\Requests;
  */
 class BasicRequest
 {
+  
     use TraitConexionManager;
     use TraitParameterManager;
     use TraitErrorsManager;
     use TraitResponseManager;
-    use TraitRequestManager;
     
+    
+    /**
+     *  Espera una conexion en caso de que no se le asige la establece en nulla
+     *  @var \FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic | null
+     *  
+     * 
+     */
     public function __construct($conexion = null)
     {
         $this->clientConexion = $conexion;
@@ -42,6 +49,10 @@ class BasicRequest
         }        
     }
     
+    /**
+     * Ejecuta la solicitud 
+     * @param array $params paratros de envio
+     */
     public function run(array $params = [])
     {
        // Se obtiene el paramer a usar

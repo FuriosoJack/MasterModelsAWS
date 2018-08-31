@@ -4,7 +4,7 @@ namespace FuriosoJack\MasterModelsAWS\Operations\Requests\EC2\VPC;
 use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
 use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
  /**
- * Parametros para Obtener las VPCS
+ *  Solicitud de obtener VPCs
  *
  * @package FuriosoJack\MasterModelsAWS\Operations\Requests\EC2\VPC
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>

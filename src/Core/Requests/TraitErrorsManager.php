@@ -28,7 +28,8 @@
 namespace FuriosoJack\MasterModelsAWS\Core\Requests;
 
 /**
- * Trait para el manejo de los errores que puede tener la solicitud 
+ * Trait para el manejo de los errores que puede tener la solicitud,
+ * ya sea por errores en el response o por erres en la construccion de la misma solicitud
  *
  *
  * @package FuriosoJack\MasterModelsAWS\Core\Requests 

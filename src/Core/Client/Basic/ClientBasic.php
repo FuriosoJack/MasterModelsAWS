@@ -5,10 +5,11 @@ use Aws\AwsClient;
  * 
  * Clase estructural de un cliente original de AWS
  * Se usa para tener un controltotal de las transacciones.
- * De esta clase tiene que heradas todas las clases que seran clientes.
+ * **De esta clase tiene que heradar todas las clases que seran clientes.**
  * @package FuriosoJack\MasterModelsAWS
  * @subpackage Core\Client\Basic
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
+ * @see MarkDown
  * @version 1.0.0
  * @access public
  * 
@@ -20,7 +21,7 @@ class ClientBasic{
    * Cliente aws
    * @var \Aws\AwsClient
    */
-  protected $awsClient;
+  private $awsClient;
   
   /**
    * Parametros de configiguracion de inicio
@@ -47,16 +48,7 @@ class ClientBasic{
   }
 
   /**
-   * Este es el metodo que se tiene que sobrecargar los hijos
-   * @return string|null Nombre de la Clase de cliente AWS
-   */
-  protected function getClientClass()
-  {
-      return null;
-  }
-
-  /***
-   * Retorna el cliente 
+   * Retorna el cliente AWS
    * @return Aws\AwsClient Cliente de conexion AWS
    */
   public function getClientAWS():AwsClient
@@ -74,6 +66,22 @@ class ClientBasic{
      
      return $this->awsClient;     
      
+  }
+  
+  ////////////////Metodos a sobrecargar
+  
+  
+  /**
+   * Metodo encargado de devolver la clase del cliente AWS que va usar este objeto
+   * 
+   * **Este es el metodo que se tiene que sobrecargar los hijos**
+   * 
+   * @see MarkDown
+   * @return string|null Nombre de la Clase de cliente AWS
+   */
+  protected function getClientClass()
+  {
+      return null;
   }
 
 

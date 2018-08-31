@@ -28,7 +28,7 @@
 namespace FuriosoJack\MasterModelsAWS\Core\Requests;
 use Aws\Result;
 /**
- * Trait para el manejo del response
+ * Trait para el manejo del response aws
  *
  * @package FuriosoJack\MasterModelsAWS\Core\Requests 
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
@@ -48,6 +48,8 @@ trait TraitResponseManager {
     
     /**
      *  Retorna el resultado de la solicitud
+     * **Cuando se retorna un response en `null` es por que existen errores por erro se debe primero verificar que no existan errores**
+     *
         * Ejemplo De reponse:
         * 
         * ```
@@ -141,7 +143,7 @@ trait TraitResponseManager {
      * Se encarga de insertar la respuesta de la peticion
      * @param \Aws\Result $response
      */
-    protected function setResponse(Result $response = null)
+    private function setResponse(Result $response = null)
     {
         $this->response = $response;        
     }

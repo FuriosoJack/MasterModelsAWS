@@ -45,9 +45,11 @@ class AuthTest extends TestCase
                 'secret' => getenv('AWS_SECRET')
             ],           
            'version' => getenv('AWS_VERSION')]);
+      
        
        //Se crea la solicitud con el cliente
-       $getVp = new \FuriosoJack\MasterModelsAWS\Operations\Requests\EC2\VPC\GetVPCs($client);     
+       $getVp = new \FuriosoJack\MasterModelsAWS\Operations\Requests\EC2\VPC\GetVPCs($client);    
+       $getVp->
        $getVp->run([
            'Filters' => [[
                'Name' => 'tag-value',

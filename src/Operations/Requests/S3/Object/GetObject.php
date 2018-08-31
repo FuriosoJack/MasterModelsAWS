@@ -29,7 +29,7 @@ namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object;
 use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
 use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
 /**
- * Description of GetObject
+ * Clase encargada de realzar la solicitud de obtener un objeto de S3 
  *
  * @package FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object 
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>

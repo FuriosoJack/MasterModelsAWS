@@ -4,7 +4,7 @@ namespace FuriosoJack\MasterModelsAWS\Core\Requests;
 
 use FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic;
 /**
- * Trait del cliente de conexion de la solicitud
+ * Trait para el manejo del cliente de la solicitud
  *
  * @package FuriosoJack\MasterModelsAWS\Core\Requests\Parameters
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
@@ -14,13 +14,15 @@ use FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic;
 trait TraitConexionManager
 {
 
-    /*
-     * Cliente de conexion
-     */
-    protected $clientConexion;
+   /**
+    * Cliente de conexion AWS
+    * @var \FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic
+    * @abstract \FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic
+    */
+   protected $clientConexion;
 
  
-    /*
+    /**
      * Establece el cliente de conexion
      * @param FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic cliente de conexion
      */
@@ -34,7 +36,7 @@ trait TraitConexionManager
      * Retorna la conexion
      * @return App\Repository\Structures\Amazon\Abstracts\AbstractClientAmazon $conexion
      */
-    protected function getClientConexion(): ClientBasic
+    private function getClientConexion(): ClientBasic
     {
         return $this->clientConexion;
     }
