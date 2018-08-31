@@ -23,10 +23,8 @@ class AuthTest extends TestCase
            'region' => 'us-east-1',
 
            'credentials' => [
-               'key',
-               'secret'
-
-           ],           
+                
+            ],           
            'version' => 'latest']);
        $parameters = new \FuriosoJack\MasterModelsAWS\Operations\Requests\EC2\VPC\Parameters\ParameterGetVPC();
        $parameters->addValueForParameter('Filters', []);
