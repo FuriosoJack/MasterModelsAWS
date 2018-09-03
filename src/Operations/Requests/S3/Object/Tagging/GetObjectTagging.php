@@ -25,36 +25,34 @@
  * @license https://raw.githubusercontent.com/FuriosoJack/MasterModelsAWS/master/LICENSE
  */
 
-namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object;
+namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\Tagging;
 use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
 use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
 /**
- * Description of PutObject
+ * Description of GetObjectTagging
  *
- * @package FuriosoJack\MasterModels\Operations\Requests\S3\Object 
+ * @package FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\Tagging
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
  * @version 
  * @access 
  */
-class PutObject extends BasicRequest {
+class GetObjectTagging extends BasicRequest{
    
-    protected function getMethodName(): string
+    protected function getMethodName():string
     {
-        return 'putObject';
+       return 'getObjectTagging';
     }
-
-
+    
     protected function getParameters(): array
     {
-       return [
-           'required' =>[
-               'Bucket', //nombre del bucket
-               'Key', //path de s3 donde va estar
-               'SourceFile' //path de donde esta el archivo en local
-           ],
-           'optional' => [
-               'Metadata'
-           ]
-       ];
+        return [
+            'required' => [
+                'Bucket',
+                'Key'
+            ],
+            'optional' =>[
+                'VersionId'
+            ]
+        ];
     }
 }

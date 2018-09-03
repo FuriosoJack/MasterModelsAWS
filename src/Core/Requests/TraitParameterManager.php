@@ -40,7 +40,7 @@ trait TraitParameterManager {
     /**
      * Metodo encargado de devolver el parameter que se va a usar
      * Este metodo deber ser sobrecargado por los hijos
-     * @return FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic $parameter
+     * @return array $parameter
      */
-    protected abstract function builderParameter():ParameterBasic;
+    protected abstract function getParameters():array;
 }

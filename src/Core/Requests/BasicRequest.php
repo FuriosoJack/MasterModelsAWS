@@ -10,7 +10,7 @@ namespace FuriosoJack\MasterModelsAWS\Core\Requests;
  * @version 1.0.0
  * @access public
  */
-class BasicRequest
+abstract class BasicRequest
 {
   
     use TraitConexionManager;
@@ -32,7 +32,7 @@ class BasicRequest
 
    
     
-    
+   
     /**
      * Envia la peticion, ejecuta la peticion con el cliente indicado y el metodo indicado
      * 
@@ -56,39 +56,19 @@ class BasicRequest
     public function run(array $params = [])
     {
        // Se obtiene el paramer a usar
-       $objectParameter = $this->builderParameter();
+       $objectParameter = new ParameterBasic($this->getParameters());
        //Se le añaden los parametros
        $objectParameter->addAllValuesForParameters($params);
        //Se establece el parameter a este objeto
        $this->setParameter($objectParameter);
        $this->sendRequest();        
               
-    }
-    
-    
-    //////////////////////////
-    // Metodos a sobrecargar por los hijos
-    //////////////////////
+    }  
     
     /**
-     * Metodo encargado de devolver el paramer que se va a usar
-     * Este metodo deber ser sobrecargado por los hijos
-     * @return FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic $parameter
+     * Devuelve el nombre del metodo que se a usar en la solicitud
+     * @return string $metodo
      */
-    protected function builderParameter(): ParameterBasic
-    {
-        
-    }
-
-    /*
-     * Debe devolver el nombre de metodo que se desea ejecutar para lasolicitud
-     * Este metodo debser ser sobrecargado por los hijo
-     * @return string nombre del metodo a ejecutar en el cliente
-     */
-    protected function getMethodName(): String {
-        
-    }
-    
-    
+    protected abstract function getMethodName():string;
 
 }

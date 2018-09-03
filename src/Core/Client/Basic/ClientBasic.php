@@ -15,7 +15,7 @@ use Aws\AwsClient;
  * 
  * 
  */
-class ClientBasic{
+abstract class ClientBasic{
 
   /**
    * Cliente aws
@@ -79,10 +79,7 @@ class ClientBasic{
    * @see MarkDown
    * @return string|null Nombre de la Clase de cliente AWS
    */
-  protected function getClientClass()
-  {
-      return null;
-  }
+  protected abstract function getClientClass();
 
 
 

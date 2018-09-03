@@ -25,34 +25,41 @@
  * @license https://raw.githubusercontent.com/FuriosoJack/MasterModelsAWS/master/LICENSE
  */
 
-namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object;
+namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\Tagging;
 use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
-use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
 /**
- * Description of GetObjectTagging
+ * Description of PutObjectTagging
  *
- * @package FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object 
+ * @package FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\Tagging
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
  * @version 
  * @access 
  */
-class GetObjectTagging extends BasicRequest{
-   
-    protected function getMethodName():string
-    {
-       return 'getObjectTagging';
-    }
+class PutObjectTagging extends BasicRequest {
     
-    protected function builderParameter(): ParameterBasic
+   /**
+    * @link https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#putobjecttagging
+    * @return array
+    */
+    protected function getParameters(): array
     {
-        return new ParameterBasic([
-            'required' => [
+        return [
+            'required' =>[
                 'Bucket',
-                'Key'
+                'Key',
+                'Tagging'
+                
             ],
-            'optional' =>[
-                'VersionId'
+            'optional' => [
+                'VersionId',
+                'ContentMD5'
             ]
-        ]);
+        ];
     }
+
+    protected function getMethodName(): string
+    {
+        return 'putObjectTagging';
+    }
+
 }

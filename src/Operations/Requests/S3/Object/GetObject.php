@@ -38,15 +38,20 @@ use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
  */
 class GetObject extends BasicRequest{
     
-   
+    public function __construct(\FuriosoJack\MasterModelsAWS\Operations\Clients\S3 $conexion)
+    {
+        parent::__construct($conexion);
+    }
+
+
     protected function getMethodName():string
     {
         return 'getObject';
     }
     
-    protected function builderParameter(): ParameterBasic
+    protected function getParameters(): array
     {
-        return new ParameterBasic([
+        return [
             'required' => [
                 'Bucket',
                 'Key'
@@ -54,7 +59,7 @@ class GetObject extends BasicRequest{
             'optional' => [
                 'VersionId'
             ]
-        ]);
+        ];
     }
     
 }

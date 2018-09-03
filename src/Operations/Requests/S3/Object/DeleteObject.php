@@ -26,35 +26,38 @@
  */
 
 namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object;
-use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
-use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
+
 /**
- * Description of PutObject
+ * Clase para la peticion de eliminacion de objeto de s3
  *
- * @package FuriosoJack\MasterModels\Operations\Requests\S3\Object 
+ * @package FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object 
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
  * @version 
  * @access 
  */
-class PutObject extends BasicRequest {
-   
+class DeleteObject extends \FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest
+{
+    
     protected function getMethodName(): string
     {
-        return 'putObject';
+        return 'deleteObject';
     }
 
-
+    /**
+     * @link https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#deleteobject
+     * @return array
+     */
     protected function getParameters(): array
     {
-       return [
-           'required' =>[
-               'Bucket', //nombre del bucket
-               'Key', //path de s3 donde va estar
-               'SourceFile' //path de donde esta el archivo en local
-           ],
-           'optional' => [
-               'Metadata'
-           ]
-       ];
+        return [
+            'required' => [
+                'Bucket',
+                'Key' 
+            ],
+            'optional' => [
+                'VersionId'
+            ]                       
+        ];
     }
+
 }
