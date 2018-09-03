@@ -1,6 +1,6 @@
 <?php
 
-/*
+/* 
  * The MIT License
  *
  * Copyright 2018 Juan Diaz - FuriosoJack <iam@furiosojack.com>.
@@ -25,26 +25,18 @@
  * @license https://raw.githubusercontent.com/FuriosoJack/MasterModelsAWS/master/LICENSE
  */
 
-namespace FuriosoJack\MasterModelsAWS\Models\S3;
 
-/**
- * Description of ObjectS3
- *
- * @package FuriosoJack\MasterModelsAWS\Models\S3 
- * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
- * @link https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#getobject
- * @version 
- * @access 
- */
-class ObjectS3 extends \FuriosoJack\MasterModelsAWS\Core\Models\BasicModel
-{
-    public static function find(string $bucket, $keyName)
-    {
-                
+return [
+    \FuriosoJack\MasterModelsAWS\Operations\Clients\S3::class => function(){
+        $parameters = [
+           'region' => getenv('AWS_REGION'),
+           'credentials' => [
+                'key' => getenv('AWS_S3_KEY'),
+                'secret' => getenv('AWS_S3_SECERT')
+            ],           
+           'version' => '2006-03-01'
+        ];
+        return new \FuriosoJack\MasterModelsAWS\Operations\Clients\S3($parameters);
     }
-    
-    public function getMetaData()
-    {
-        return $this->getSpecificAttribute('Metadata');
-    }
-}
+];
+      

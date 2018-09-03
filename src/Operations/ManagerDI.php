@@ -25,41 +25,61 @@
  * @license https://raw.githubusercontent.com/FuriosoJack/MasterModelsAWS/master/LICENSE
  */
 
-namespace FuriosoJack\MasterModelsAWS\Core\Models;
-
+namespace FuriosoJack\MasterModelsAWS\Operations;
+use DI\ContainerBuilder;
 /**
- * Modelo Basico de la estructura de un modelo
+ * Clase para el manejo de objecto por inyeccion de dependencias
  *
- * @package FuriosoJack\MasterModelsAWS\Core\Models 
+ * @package FuriosoJack\MasterModelAWS\Operations 
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
  * @version 
  * @access 
  */
-class BasicModel
+class ManagerDI
 {
     /**
-     * Estructura JSON del modelo, recibida desde una paticion 
-     * @var array 
+     * Instancia de la clase
+     * @var ManagerDI 
      */
-    protected $myStructure;
-
+    private static $instance;
+    
     /**
-     * 
-     * @param array $myStructure
+     * Contenedor de inyeccion de dependencias
+     * @var DI\Container 
      */
-    public function __construct(array $myStructure)
+    private $container;
+    
+    private function __construct()
     {
-        $this->myStructure = $myStructure;
+        //Se crea un builder de containers
+        $builder = new ContainerBuilder();
+        //Se le añaden las configuraciones para que la inyeccion de dependencias
+        //aña segun el cliente la configuracionpertiente
+        $builder->addDefinitions(realpath(__DIR__."/../config/DI.php")); 
+        //construlle el contenedor
+        $this->container = $builder->build();
     }
     
     /**
-     * Debuelve un atributo especifcado por string, en caso de que el atributo no exista se devuelve FALSE
-     * @return string|array|FALSE|null|integer|float|double
+     * Devuelve la unica instancia que la clase
+     * @return \self
      */
-    public function getSpecificAttribute(string $attribure){
-        if(array_key_exists($attribure,$this->myStructure)){
-            return $this->myStructure[$attribure];
+    private static function getInstance():self
+    {
+        if(is_null(self::$instance)){
+            self::$instance = new self();
         }
-        return FALSE;
+        return self::$instance;
+    }
+    
+    /**
+     * Genera un objecto de una clase parasa por parametro con inyeccion de dependencias
+     * @param string $class
+     * @return mixed
+     */
+    public static function makeInstance(string $class)
+    {
+        $yo = self::getInstance();        
+        return $yo->container->get($class);
     }
 }

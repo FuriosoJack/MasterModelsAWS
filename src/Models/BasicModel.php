@@ -25,26 +25,41 @@
  * @license https://raw.githubusercontent.com/FuriosoJack/MasterModelsAWS/master/LICENSE
  */
 
-namespace FuriosoJack\MasterModelsAWS\Models\S3;
+namespace FuriosoJack\MasterModelsAWS\Models;
 
 /**
- * Description of ObjectS3
+ * Modelo Basico de la estructura de un modelo
  *
- * @package FuriosoJack\MasterModelsAWS\Models\S3 
+ * @package FuriosoJack\MasterModelsAWS\Models 
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
- * @link https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#getobject
  * @version 
  * @access 
  */
-class ObjectS3 extends \FuriosoJack\MasterModelsAWS\Core\Models\BasicModel
+class BasicModel
 {
-    public static function find(string $bucket, $keyName)
+    /**
+     * Estructura JSON del modelo, recibida desde una paticion 
+     * @var array 
+     */
+    protected $myStructure;
+
+    /**
+     * 
+     * @param array $myStructure
+     */
+    public function __construct(array $myStructure)
     {
-                
+        $this->myStructure = $myStructure;
     }
     
-    public function getMetaData()
-    {
-        return $this->getSpecificAttribute('Metadata');
+    /**
+     * Debuelve un atributo especifcado por string, en caso de que el atributo no exista se devuelve FALSE
+     * @return string|array|FALSE|null|integer|float|double
+     */
+    public function getSpecificAttribute(string $attribure){
+        if(array_key_exists($attribure,$this->myStructure)){
+            return $this->myStructure[$attribure];
+        }
+        return FALSE;
     }
 }

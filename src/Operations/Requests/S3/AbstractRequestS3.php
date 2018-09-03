@@ -38,7 +38,7 @@ use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
  */
 abstract class AbstractRequestS3 extends BasicRequest
 {
-    public function __construct(S3 $client)
+    public function __construct(S3 $client = null)
     {
         parent::__construct($client);
     }

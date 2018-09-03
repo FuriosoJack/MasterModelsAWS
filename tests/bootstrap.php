@@ -1,6 +1,6 @@
 <?php
 
-/*
+/* 
  * The MIT License
  *
  * Copyright 2018 Juan Diaz - FuriosoJack <iam@furiosojack.com>.
@@ -25,26 +25,10 @@
  * @license https://raw.githubusercontent.com/FuriosoJack/MasterModelsAWS/master/LICENSE
  */
 
-namespace FuriosoJack\MasterModelsAWS\Models\S3;
 
-/**
- * Description of ObjectS3
- *
- * @package FuriosoJack\MasterModelsAWS\Models\S3 
- * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
- * @link https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#getobject
- * @version 
- * @access 
- */
-class ObjectS3 extends \FuriosoJack\MasterModelsAWS\Core\Models\BasicModel
-{
-    public static function find(string $bucket, $keyName)
-    {
-                
-    }
-    
-    public function getMetaData()
-    {
-        return $this->getSpecificAttribute('Metadata');
-    }
-}
+use DI\ContainerBuilder;
+
+$containerBuilder = new ContainerBuilder;
+$containerBuilder->addDefinitions(__DIR__ . '/config.php');
+$container = $containerBuilder->build();
+return $container;

@@ -25,26 +25,24 @@
  * @license https://raw.githubusercontent.com/FuriosoJack/MasterModelsAWS/master/LICENSE
  */
 
-namespace FuriosoJack\MasterModelsAWS\Models\S3;
+namespace FuriosoJack\MasterModelsAWS\Collections;
 
 /**
- * Description of ObjectS3
+ * Description of BasicCollection
  *
- * @package FuriosoJack\MasterModelsAWS\Models\S3 
+ * @package FuriosoJack\MasterModelsAWS\Collections 
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
- * @link https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#getobject
  * @version 
  * @access 
  */
-class ObjectS3 extends \FuriosoJack\MasterModelsAWS\Core\Models\BasicModel
+class BasicCollection
 {
-    public static function find(string $bucket, $keyName)
+    /**
+     * Devuelve una instancia del mismo
+     * @return \static
+     */
+    public static function buildInstance()
     {
-                
-    }
-    
-    public function getMetaData()
-    {
-        return $this->getSpecificAttribute('Metadata');
+        return new static();
     }
 }

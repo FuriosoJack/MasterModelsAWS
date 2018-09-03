@@ -25,26 +25,27 @@
  * @license https://raw.githubusercontent.com/FuriosoJack/MasterModelsAWS/master/LICENSE
  */
 
-namespace FuriosoJack\MasterModelsAWS\Models\S3;
-
+namespace FuriosoJack\MasterModelsAWS\Tests;
+use PHPUnit\Framework\TestCase;
+use DI\Container;
+use DI\ContainerBuilder;
 /**
- * Description of ObjectS3
+ * Description of TestModels
  *
- * @package FuriosoJack\MasterModelsAWS\Models\S3 
+ * @package FuriosoJack\MasterModelsAWS\Tests 
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
- * @link https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#getobject
  * @version 
  * @access 
  */
-class ObjectS3 extends \FuriosoJack\MasterModelsAWS\Core\Models\BasicModel
+class TestModels extends TestCase
 {
-    public static function find(string $bucket, $keyName)
+    public function testIY()
     {
-                
-    }
+      
     
-    public function getMetaData()
-    {
-        return $this->getSpecificAttribute('Metadata');
+       
+       $object = \FuriosoJack\MasterModelsAWS\Operations\ManagerDI::makeInstance(\FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\GetObject::class);
+       
+       var_dump($object);
     }
 }
