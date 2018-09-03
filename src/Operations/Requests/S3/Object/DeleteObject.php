@@ -26,7 +26,7 @@
  */
 
 namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object;
-
+use FuriosoJack\MasterModelsAWS\Operations\Requests\S3\AbstractRequestS3;
 /**
  * Clase para la peticion de eliminacion de objeto de s3
  *
@@ -35,8 +35,9 @@ namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object;
  * @version 
  * @access 
  */
-class DeleteObject extends \FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest
+class DeleteObject extends AbstractRequestS3
 {
+    
     
     protected function getMethodName(): string
     {

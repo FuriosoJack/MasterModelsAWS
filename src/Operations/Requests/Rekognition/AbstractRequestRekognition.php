@@ -25,41 +25,21 @@
  * @license https://raw.githubusercontent.com/FuriosoJack/MasterModelsAWS/master/LICENSE
  */
 
-namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object;
+namespace FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition;
 use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
-use FuriosoJack\MasterModelsAWS\Operations\Requests\S3\AbstractRequestS3;
+use FuriosoJack\MasterModelsAWS\Operations\Clients\Rekognition;
 /**
- * Clase encargada de realzar la solicitud de obtener un objeto de S3 
+ * Description of AbstractRequestRekognition
  *
- * @package FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object 
+ * @package FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition 
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
  * @version 
  * @access 
  */
-class GetObject extends AbstractRequestS3{
-    
-    public function __construct(\FuriosoJack\MasterModelsAWS\Operations\Clients\S3 $conexion)
+abstract class AbstractRequestRekognition extends BasicRequest
+{
+    public function __construct(Rekognition $client)
     {
-        parent::__construct($conexion);
+        parent::__construct($client);
     }
-
-
-    protected function getMethodName():string
-    {
-        return 'getObject';
-    }
-    
-    protected function getParameters(): array
-    {
-        return [
-            'required' => [
-                'Bucket',
-                'Key'
-            ],
-            'optional' => [
-                'VersionId'
-            ]
-        ];
-    }
-    
 }

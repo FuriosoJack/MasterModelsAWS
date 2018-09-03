@@ -26,7 +26,7 @@
  */
 
 namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\Tagging;
-use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
+use FuriosoJack\MasterModelsAWS\Operations\Requests\S3\AbstractRequestS3;
 /**
  * Description of PutObjectTagging
  *
@@ -35,7 +35,7 @@ use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
  * @version 
  * @access 
  */
-class PutObjectTagging extends BasicRequest {
+class PutObjectTagging extends AbstractRequestS3 {
     
    /**
     * @link https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#putobjecttagging

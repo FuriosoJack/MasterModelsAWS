@@ -132,9 +132,10 @@ trait TraitResponseManager {
         *      } 
         *```         
         * @see Markdown
+     * @link https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.Result.html
      * @return \Aws\Result|null $response resultado de la solicitud
      */
-    public function getResonse()
+    public function getResonse():Result
     {
         return $this->response;
     }

@@ -27,7 +27,7 @@
 
 namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\Tagging;
 use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
-use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
+use FuriosoJack\MasterModelsAWS\Operations\Requests\S3\AbstractRequestS3;
 /**
  * Description of GetObjectTagging
  *
@@ -36,7 +36,7 @@ use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
  * @version 
  * @access 
  */
-class GetObjectTagging extends BasicRequest{
+class GetObjectTagging extends AbstractRequestS3{
    
     protected function getMethodName():string
     {

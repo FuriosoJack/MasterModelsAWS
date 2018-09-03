@@ -26,7 +26,7 @@
  */
 
 namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\Tagging;
-use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
+use FuriosoJack\MasterModelsAWS\Operations\Requests\S3\AbstractRequestS3;
 /**
  * Clase de peticion para eliminar tag de un objeto de s3
  *
@@ -35,7 +35,7 @@ use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
  * @version 
  * @access 
  */
-class DeleteObjectTagging extends BasicRequest
+class DeleteObjectTagging extends AbstractRequestS3
 {
     
     protected function getMethodName(): string

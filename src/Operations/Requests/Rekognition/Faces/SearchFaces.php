@@ -25,41 +25,40 @@
  * @license https://raw.githubusercontent.com/FuriosoJack/MasterModelsAWS/master/LICENSE
  */
 
-namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object;
-use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
-use FuriosoJack\MasterModelsAWS\Operations\Requests\S3\AbstractRequestS3;
+namespace FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces;
+
 /**
- * Clase encargada de realzar la solicitud de obtener un objeto de S3 
+ * Description of SearchFaces
  *
- * @package FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object 
+ * @package FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces 
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
  * @version 
  * @access 
  */
-class GetObject extends AbstractRequestS3{
+class SearchFaces extends \FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\AbstractRequestRekognition
+{
     
-    public function __construct(\FuriosoJack\MasterModelsAWS\Operations\Clients\S3 $conexion)
+    protected function getMethodName(): string
     {
-        parent::__construct($conexion);
+        return 'searchFaces';
     }
 
-
-    protected function getMethodName():string
-    {
-        return 'getObject';
-    }
-    
+    /**
+     * @link https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-rekognition-2016-06-27.html#searchfaces
+     * @return array
+     */
     protected function getParameters(): array
     {
         return [
-            'required' => [
-                'Bucket',
-                'Key'
-            ],
-            'optional' => [
-                'VersionId'
-            ]
+          'required' => [
+              'CollectionId',
+              'FaceId'
+          ],
+          'optilonal' => [
+              'MaxFaces',
+              'FaceMatchThreshold'
+          ]
         ];
     }
-    
+
 }

@@ -2,7 +2,7 @@
 namespace FuriosoJack\MasterModelsAWS\Operations\Requests\EC2\VPC;
 
 use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
-use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
+use FuriosoJack\MasterModelsAWS\Operations\Requests\EC2\AbstractRequestEC2;
  /**
  *  Solicitud de obtener VPCs
  *
@@ -11,12 +11,9 @@ use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
  * @version 1.0.1
  * @access public
  */
-class GetVPCs extends BasicRequest {
+class GetVPCs extends AbstractRequestEC2 {
     
-    public function __construct(\FuriosoJack\MasterModelsAWS\Operations\Clients\EC2 $conexion)
-    {
-        parent::__construct($conexion);
-    }
+    
     protected function getMethodName(): String
     {
         return 'describeVpcs';       

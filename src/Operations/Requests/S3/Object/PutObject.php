@@ -26,8 +26,7 @@
  */
 
 namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object;
-use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
-use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
+use FuriosoJack\MasterModelsAWS\Operations\Requests\S3\AbstractRequestS3;
 /**
  * Description of PutObject
  *
@@ -36,7 +35,7 @@ use FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic;
  * @version 
  * @access 
  */
-class PutObject extends BasicRequest {
+class PutObject extends AbstractRequestS3 {
    
     protected function getMethodName(): string
     {

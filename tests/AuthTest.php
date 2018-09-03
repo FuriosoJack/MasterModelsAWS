@@ -18,6 +18,14 @@ class AuthTest extends TestCase
     private $pathFile;
     private $fileNameUp;
     
+    
+    public function __construct()
+    {
+        parent::__construct();
+         $this->fileNameUp = 'chuck.jpg';
+    }
+
+
     public function setUp()
     {
         parent::setUp();
@@ -27,9 +35,9 @@ class AuthTest extends TestCase
         $dotenv->load();
         
         $apthFile = __DIR__;
-        $this->pathFile = realpath($apthFile . "../../../../../Pictures/Captura.png");  
+        $this->pathFile = realpath($apthFile . "../../../../../Pictures/chuck.jpg");  
        
-        $this->fileNameUp = rand(1,60). 'Captura.png';
+       
     }
     /**
      * Disabled test
@@ -118,7 +126,7 @@ class AuthTest extends TestCase
     
     
     
-    public function PutObjectTagging()
+    public function testPutObjectTagging()
     {
         //Se crea el cliente
         $client = new \FuriosoJack\MasterModelsAWS\Operations\Clients\S3([
@@ -200,10 +208,180 @@ class AuthTest extends TestCase
             var_dump($request->getErrors());
             $this->assertTrue(false);
         }else{
-            var_dump($request->getResonse());
+            //var_dump($request->getResonse());
             $this->assertTrue(true);
         }
                
+    }
+        
+    
+    public function testIndexFacesRekognition()
+    {
+         $client = new \FuriosoJack\MasterModelsAWS\Operations\Clients\Rekognition([
+           'region' => getenv('AWS_REGION'),
+           'credentials' => [
+                'key' => getenv('AWS_S3_KEY'),
+                'secret' => getenv('AWS_S3_SECERT')
+            ],           
+           'version' => '2016-06-27']);
+         $request = new \FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces\IndexFaces($client);
+         
+         $request->run([
+             'CollectionId' => getenv('AWS_REKOGNITION_COLLECTIONID'),
+             'Image' => [
+                 'S3Object' => [
+                     'Bucket' => getenv('AWS_S3_BUCKET'),
+                     'Name' => 'album/'.$this->fileNameUp
+                 ]
+             ],
+             'ExternalImageId' => 'UNIQUEEXTERNAID',
+             'DetectionAttributes' => [
+                 'DEFAULT'
+                 ]             
+         ]);
+         
+         if($request->thereAreErrors()){
+             var_dump($request->getErrors());
+             $this->assertTrue(false);
+         }else{
+             //var_dump($request->getResonse());
+             $this->assertTrue(true);
+         }
+    }
+    
+   
+    
+    public function testListFacesRekognition()
+    {
+        $client = new \FuriosoJack\MasterModelsAWS\Operations\Clients\Rekognition([
+           'region' => getenv('AWS_REGION'),
+           'credentials' => [
+                'key' => getenv('AWS_S3_KEY'),
+                'secret' => getenv('AWS_S3_SECERT')
+            ],           
+           'version' => '2016-06-27']);
+        $request = new \FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces\ListFaces($client);
+        
+        $request->run([
+            'CollectionId' => getenv('AWS_REKOGNITION_COLLECTIONID'),
+            'MaxResults' =>20
+        ]);
+        
+        if($request->thereAreErrors()){
+            var_dump($request->getErrors());
+            $this->assertTrue(false);
+        }else{
+            //var_dump($request->getResonse());
+            $this->assertTrue(true);            
+        }
+    }
+    
+    public function testSeachAndDeleteFacesRekognition()
+    {
+        
+        $client = new \FuriosoJack\MasterModelsAWS\Operations\Clients\Rekognition([
+           'region' => getenv('AWS_REGION'),
+           'credentials' => [
+                'key' => getenv('AWS_S3_KEY'),
+                'secret' => getenv('AWS_S3_SECERT')
+            ],           
+           'version' => '2016-06-27']);
+        
+        $requestSearchByImage = new \FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces\SearchFacesByImage($client);
+        $requestSearch = new \FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces\SearchFaces($client);
+        $requestDelete = new \FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces\DeleteFaces($client);
+ 
+        $requestSearchByImage->run([
+            'CollectionId' => getenv('AWS_REKOGNITION_COLLECTIONID'),
+            'Image' => [
+                'S3Object' => [
+                     'Bucket' => getenv('AWS_S3_BUCKET'),
+                     'Name' => 'album/'.$this->fileNameUp
+                 ]
+            ],
+            'MaxFaces' => 1
+            
+        ]);
+        if($requestSearchByImage->thereAreErrors()){
+            var_dump($requestSearchByImage->getErrors());
+            $this->assertTrue(false);
+        }else{
+            $response = $requestSearchByImage->getResonse();
+            $facesMatchs = $response->get('FaceMatches');
+            $faceELement = $facesMatchs[0]['Face'];
+            $faceID = $faceELement['FaceId'];           
+            $this->assertTrue(strlen($faceID) > 0);  
+            
+            
+            $requestSearch->run([
+                'CollectionId' => getenv('AWS_REKOGNITION_COLLECTIONID'),
+                'FaceId' => $faceID
+            ]);
+            
+            
+            $this->assertTrue(!$requestSearch->thereAreErrors());
+            
+            
+            $requestDelete->run([
+                'CollectionId' => getenv('AWS_REKOGNITION_COLLECTIONID'),
+                'FaceIds' => [
+                    $faceID
+                ]
+            ]);
+            
+            $this->assertTrue(!$requestDelete->thereAreErrors()); 
+            
+        }        
+        
+    }
+    
+    
+    public function testDetectFacesRekognition()
+    {
+        
+        $client = new \FuriosoJack\MasterModelsAWS\Operations\Clients\Rekognition([
+           'region' => getenv('AWS_REGION'),
+           'credentials' => [
+                'key' => getenv('AWS_S3_KEY'),
+                'secret' => getenv('AWS_S3_SECERT')
+            ],           
+           'version' => '2016-06-27']);
+        
+        $request = new \FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces\DetectFaces($client);
+        
+        $request->run([
+            'Image' => [
+                 'S3Object' => [
+                     'Bucket' => getenv('AWS_S3_BUCKET'),
+                     'Name' => 'album/'.$this->fileNameUp
+                 ]
+             ]
+        ]);
+        
+        $this->assertTrue(!$request->thereAreErrors());
+        
+    }
+    public function testDeleteObjectS3()
+    {
+        $client = new \FuriosoJack\MasterModelsAWS\Operations\Clients\S3([
+           'region' => getenv('AWS_REGION'),
+           'credentials' => [
+                'key' => getenv('AWS_S3_KEY'),
+                'secret' => getenv('AWS_S3_SECERT')
+            ],           
+           'version' => '2006-03-01']);
+        $request = new \FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object\DeleteObject($client);
+        
+        $request->run([
+            'Bucket' => getenv('AWS_S3_BUCKET'),
+            'Key' => 'album/'.$this->fileNameUp,            
+        ]);
+        
+        if($request->thereAreErrors()){
+            $this->assertTrue(false);
+        }else{
+            $this->assertTrue(true);
+        }
     }
     
     

@@ -25,41 +25,20 @@
  * @license https://raw.githubusercontent.com/FuriosoJack/MasterModelsAWS/master/LICENSE
  */
 
-namespace FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object;
-use FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest;
-use FuriosoJack\MasterModelsAWS\Operations\Requests\S3\AbstractRequestS3;
+namespace FuriosoJack\MasterModelsAWS\Operations\Requests\EC2;
+
 /**
- * Clase encargada de realzar la solicitud de obtener un objeto de S3 
+ * Description of AbstractRequestEC2
  *
- * @package FuriosoJack\MasterModelsAWS\Operations\Requests\S3\Object 
+ * @package FuriosoJack\MasterModelsAWS\Operations\Requests\EC2 
  * @author Juan Diaz - FuriosoJack <http://blog.furiosojack.com/>
  * @version 
  * @access 
  */
-class GetObject extends AbstractRequestS3{
-    
-    public function __construct(\FuriosoJack\MasterModelsAWS\Operations\Clients\S3 $conexion)
+abstract class AbstractRequestEC2 extends \FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest
+{
+    public function __construct(\FuriosoJack\MasterModelsAWS\Operations\Clients\EC2 $client)
     {
-        parent::__construct($conexion);
+        parent::__construct($client);
     }
-
-
-    protected function getMethodName():string
-    {
-        return 'getObject';
-    }
-    
-    protected function getParameters(): array
-    {
-        return [
-            'required' => [
-                'Bucket',
-                'Key'
-            ],
-            'optional' => [
-                'VersionId'
-            ]
-        ];
-    }
-    
 }
