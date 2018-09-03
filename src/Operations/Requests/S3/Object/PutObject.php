@@ -49,10 +49,11 @@ class PutObject extends AbstractRequestS3 {
            'required' =>[
                'Bucket', //nombre del bucket
                'Key', //path de s3 donde va estar
-               'SourceFile' //path de donde esta el archivo en local
            ],
            'optional' => [
-               'Metadata'
+               'Metadata',
+               'SourceFile',
+               'Body'
            ]
        ];
     }
