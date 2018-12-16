@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src').replace( /\\/g, '/');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/FuriosoJack.html">\FuriosoJack</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">85</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1360707338"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1360707338" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-466155281"></a>
+                                <a href="../namespaces/FuriosoJack.html" style="margin-left: 30px; padding-left: 0">FuriosoJack</a>
+            </div>
+            <div id="namespace-466155281" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-975391895"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.html" style="margin-left: 30px; padding-left: 0">MasterModelsAWS</a>
+            </div>
+            <div id="namespace-975391895" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-313334383"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Collections.html" style="margin-left: 30px; padding-left: 0">Collections</a>
+            </div>
+            <div id="namespace-313334383" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1739038499"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Collections.S3.html" style="margin-left: 30px; padding-left: 0">S3</a>
+            </div>
+            <div id="namespace-1739038499" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-806983822"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Collections.S3.Objects.html" style="margin-left: 30px; padding-left: 0">Objects</a>
+            </div>
+            <div id="namespace-806983822" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Collections.S3.Objects.ObjectsS3.html">ObjectsS3</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Collections.BasicCollection.html">BasicCollection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1722629892"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Core.html" style="margin-left: 30px; padding-left: 0">Core</a>
+            </div>
+            <div id="namespace-1722629892" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1141297755"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Core.Client.html" style="margin-left: 30px; padding-left: 0">Client</a>
+            </div>
+            <div id="namespace-1141297755" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-975858831"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Core.Client.Basic.html" style="margin-left: 30px; padding-left: 0">Basic</a>
+            </div>
+            <div id="namespace-975858831" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Client.Basic.ClientBasic.html">ClientBasic</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1625082636"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Core.Requests.html" style="margin-left: 30px; padding-left: 0">Requests</a>
+            </div>
+            <div id="namespace-1625082636" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitConexionManager.html">TraitConexionManager</a></li>
+                                                    <li class="trait"><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitErrorsManager.html">TraitErrorsManager</a></li>
+                                                    <li class="trait"><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitParameterManager.html">TraitParameterManager</a></li>
+                                                    <li class="trait"><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitResponseManager.html">TraitResponseManager</a></li>
+                                                                            <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.BasicRequest.html">BasicRequest</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.ParameterBasic.html">ParameterBasic</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1880739912"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Models.html" style="margin-left: 30px; padding-left: 0">Models</a>
+            </div>
+            <div id="namespace-1880739912" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1948550214"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Models.S3.html" style="margin-left: 30px; padding-left: 0">S3</a>
+            </div>
+            <div id="namespace-1948550214" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Models.S3.ObjectS3.html">ObjectS3</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Models.BasicModel.html">BasicModel</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1819255988"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Operations.html" style="margin-left: 30px; padding-left: 0">Operations</a>
+            </div>
+            <div id="namespace-1819255988" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1551112764"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Operations.Clients.html" style="margin-left: 30px; padding-left: 0">Clients</a>
+            </div>
+            <div id="namespace-1551112764" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Clients.DirectoryService.html">DirectoryService</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Clients.EC2.html">EC2</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Clients.Rekognition.html">Rekognition</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Clients.S3.html">S3</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1590927485"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Operations.Requests.html" style="margin-left: 30px; padding-left: 0">Requests</a>
+            </div>
+            <div id="namespace-1590927485" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2103497321"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Operations.Requests.EC2.html" style="margin-left: 30px; padding-left: 0">EC2</a>
+            </div>
+            <div id="namespace-2103497321" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1950193826"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Operations.Requests.EC2.VPC.html" style="margin-left: 30px; padding-left: 0">VPC</a>
+            </div>
+            <div id="namespace-1950193826" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.EC2.VPC.GetVPCs.html">GetVPCs</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.EC2.AbstractRequestEC2.html">AbstractRequestEC2</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1631089037"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.html" style="margin-left: 30px; padding-left: 0">Rekognition</a>
+            </div>
+            <div id="namespace-1631089037" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1247941255"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.Faces.html" style="margin-left: 30px; padding-left: 0">Faces</a>
+            </div>
+            <div id="namespace-1247941255" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.Faces.DeleteFaces.html">DeleteFaces</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.Faces.DetectFaces.html">DetectFaces</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.Faces.IndexFaces.html">IndexFaces</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.Faces.ListFaces.html">ListFaces</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.Faces.SearchFaces.html">SearchFaces</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.Faces.SearchFacesByImage.html">SearchFacesByImage</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.AbstractRequestRekognition.html">AbstractRequestRekognition</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-165699304"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Operations.Requests.S3.html" style="margin-left: 30px; padding-left: 0">S3</a>
+            </div>
+            <div id="namespace-165699304" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-647229012"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Operations.Requests.S3.Object.html" style="margin-left: 30px; padding-left: 0">Object</a>
+            </div>
+            <div id="namespace-647229012" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-230853180"></a>
+                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Operations.Requests.S3.Object.Tagging.html" style="margin-left: 30px; padding-left: 0">Tagging</a>
+            </div>
+            <div id="namespace-230853180" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.S3.Object.Tagging.DeleteObjectTagging.html">DeleteObjectTagging</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.S3.Object.Tagging.GetObjectTagging.html">GetObjectTagging</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.S3.Object.Tagging.PutObjectTagging.html">PutObjectTagging</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.S3.Object.DeleteObject.html">DeleteObject</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.S3.Object.GetObject.html">GetObject</a></li>
+                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.S3.Object.PutObject.html">PutObject</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.S3.AbstractRequestS3.html">AbstractRequestS3</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.ManagerDI.html">ManagerDI</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.Faces.html">\FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces</small>SearchFaces</h1>
+                    <p><em>Description of SearchFaces</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.BasicRequest.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.BasicRequest.html#method_run" class="">run()</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitConexionManager.html#method_setClientConexion" class="">setClientConexion()</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitErrorsManager.html#method_getErrors" class="">getErrors()</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitErrorsManager.html#method_thereAreErrors" class="">thereAreErrors()</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitResponseManager.html#method_getResonse" class="">getResonse()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.Faces.SearchFaces.html#method_getMethodName" class="">getMethodName()</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.Faces.SearchFaces.html#method_getParameters" class="">getParameters()</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitErrorsManager.html#method_setErros" class="">setErros()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitConexionManager.html#property_clientConexion" class="">$clientConexion</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitErrorsManager.html#property_errors" class="">$errors</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitResponseManager.html#property_response" class="">$response</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.BasicRequest.html#method_sendRequest" class="">sendRequest()</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitConexionManager.html#method_getClientConexion" class="">getClientConexion()</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitParameterManager.html#method_setParameter" class="">setParameter()</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitParameterManager.html#method_getParameter" class="">getParameter()</a><br />
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitResponseManager.html#method_setResponse" class="">setResponse()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitParameterManager.html#property_parameter" class="">$parameter</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Operations.Requests.Rekognition.Faces.SearchFaces.html"><div class="path-wrapper">Operations/Requests/Rekognition/Faces/SearchFaces.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Rekognition\Faces</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                        <div class="namespace-wrapper"><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.BasicRequest.html">\FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest</a></div>
+                                                                    
+                                        <div class="namespace-wrapper"><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.AbstractRequestRekognition.html">\FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\AbstractRequestRekognition</a></div>
+                                                                                                    <div class="namespace-wrapper">\FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces\SearchFaces</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                                                        <p>Juan Diaz - FuriosoJack <a href="http://blog.furiosojack.com/">http://blog.furiosojack.com/</a></p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                version
+                            </th>
+                            <td>
+                                                                                                        
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                access
+                            </th>
+                            <td>
+                                                                                                        
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_clientConexion" name="property_clientConexion" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$clientConexion</h3>
+                <pre class="signature">$clientConexion : \FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic</pre>
+                <p><em>Cliente de conexion AWS</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Client.Basic.ClientBasic.html">\FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitConexionManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitConexionManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            abstract
+                        </th>
+                        <td>
+                                                                                            <p>\FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_errors" name="property_errors" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$errors</h3>
+                <pre class="signature">$errors : string</pre>
+                <p><em>Errores del la solicitud, que puden se generados por fallos en la solicitud
+como Fllas en la conexion con el servidor, o fallos directamente que devuelva el response</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitErrorsManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitErrorsManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_response" name="property_response" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$response</h3>
+                <pre class="signature">$response : \Aws\Result</pre>
+                <p><em>Response de la solicitud AWS</em></p>
+                
+
+                                <h4>Type</h4>
+                \Aws\Result
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitResponseManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitResponseManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_parameter" name="property_parameter" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$parameter</h3>
+                <pre class="signature">$parameter : \FuriosoJack\MasterModelsAWS\Core\Requests\FuriosoJack\MasterModelsAWS\Core\Requests\Parameters\ParameterBasic</pre>
+                <p><em>Parametros de la solicitud</em></p>
+                
+
+                                <h4>Type</h4>
+                \FuriosoJack\MasterModelsAWS\Core\Requests\FuriosoJack\MasterModelsAWS\Core\Requests\Parameters\ParameterBasic
+                &mdash; objetos parametros                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitParameterManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitParameterManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$conexion = null</span>) </pre>
+                <p><em>Espera una conexion en caso de que no se le asige la establece en nulla</em></p>
+                <p>@var \FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic | null</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$conexion </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.BasicRequest.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_run" name="method_run" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">run()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">run(array  <span class="argument">$params = array()</span>) </pre>
+                <p><em>Ejecuta la solicitud</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$params </td>
+                                <td><p>paratros de envio</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.BasicRequest.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setClientConexion" name="method_setClientConexion" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setClientConexion()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setClientConexion(\FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic  <span class="argument">$conexion</span>) </pre>
+                <p><em>Establece el cliente de conexion</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Client.Basic.ClientBasic.html">\FuriosoJack\MasterModelsAWS\Core\Client\Basic\ClientBasic</a></td>
+                                <td>$conexion </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitConexionManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitConexionManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getErrors" name="method_getErrors" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getErrors()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getErrors() : string</pre>
+                <p><em>Devuelve los errores</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitErrorsManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitErrorsManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_thereAreErrors" name="method_thereAreErrors" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">thereAreErrors()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">thereAreErrors() : boolean</pre>
+                <p><em>Se encarga de validar si existen errores en la solicitud</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitErrorsManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitErrorsManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getResonse" name="method_getResonse" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getResonse()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getResonse() : \Aws\Result|null</pre>
+                <p><em>Retorna el resultado de la solicitud
+**Cuando se retorna un response en `null` es por que existen errores por erro se debe primero verificar que no existan errores**</em></p>
+                <p>Ejemplo De reponse:</p>
+<pre><code>   object(Aws\Result)#102 (1) {
+       ["data":"Aws\Result":private]=&gt;
+       array(2) {
+         ["Vpcs"]=&gt;
+         array(1) {
+           [0]=&gt;
+           array(8) {
+             ["CidrBlock"]=&gt;
+             string(13) "172.31.0.0/16"
+             ["DhcpOptionsId"]=&gt;
+             string(13) "dopt-a86sds9c8ghce"
+             ["State"]=&gt;
+             string(9) "available"
+             ["VpcId"]=&gt;
+             string(12) "vpc-b3f0efdssdbc12a"
+             ["InstanceTenancy"]=&gt;
+             string(7) "default"
+             ["CidrBlockAssociationSet"]=&gt;
+             array(1) {
+               [0]=&gt;
+               array(3) {
+                 ["AssociationId"]=&gt;
+                 string(23) "vpc-cidr-assoc-0bcasdggff0d60"
+                 ["CidrBlock"]=&gt;
+                 string(13) "172.31.0.0/16"
+                 ["CidrBlockState"]=&gt;
+                 array(1) {
+                   ["State"]=&gt;
+                   string(10) "associated"
+                 }
+               }
+             }
+             ["IsDefault"]=&gt;
+             bool(true)
+             ["Tags"]=&gt;
+             array(1) {
+               [0]=&gt;
+               array(2) {
+                 ["Key"]=&gt;
+                 string(4) "Name"
+                 ["Value"]=&gt;
+                 string(7) "default"
+               }
+             }
+           }
+         }
+         ["@metadata"]=&gt;
+         array(4) {
+           ["statusCode"]=&gt;
+           int(200)
+           ["effectiveUri"]=&gt;
+           string(35) "https://ec2.us-east-1.amazonaws.com"
+           ["headers"]=&gt;
+           array(5) {
+             ["content-type"]=&gt;
+             string(22) "text/xml;charset=UTF-8"
+             ["transfer-encoding"]=&gt;
+             string(7) "chunked"
+             ["vary"]=&gt;
+             string(15) "Accept-Encoding"
+             ["date"]=&gt;
+             string(29) "Fri, 31 Aug 2018 15:51:57 GMT"
+             ["server"]=&gt;
+             string(9) "AmazonEC2"
+           }
+           ["transferStats"]=&gt;
+           array(1) {
+             ["http"]=&gt;
+             array(1) {
+               [0]=&gt;
+               array(0) {
+               }
+             }
+           }
+         }
+       }
+     }</code></pre>
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Aws\Result|null
+                                            &mdash; <p>$response resultado de la solicitud</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitResponseManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitResponseManager</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\Markdown</span></a></dd>
+                                                                                                    <dd><a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.Result.html"><span class="namespace-wrapper">https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.Result.html</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMethodName" name="method_getMethodName" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">getMethodName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMethodName() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.Faces.SearchFaces.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces\SearchFaces</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getParameters" name="method_getParameters" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">getParameters()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getParameters() : array</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Operations.Requests.Rekognition.Faces.SearchFaces.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Operations\Requests\Rekognition\Faces\SearchFaces</div></a></dd>
+                                                                            <dt>See also</dt>
+                                                                <dd><a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-rekognition-2016-06-27.html#searchfaces"><span class="namespace-wrapper">https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-rekognition-2016-06-27.html#searchfaces</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setErros" name="method_setErros" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setErros()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setErros(string  <span class="argument">$errors</span>) </pre>
+                <p><em>Asigna los errores</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$errors </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitErrorsManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitErrorsManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sendRequest" name="method_sendRequest" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">sendRequest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sendRequest() </pre>
+                <p><em>Envia la peticion, ejecuta la peticion con el cliente indicado y el metodo indicado</em></p>
+                
+
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.BasicRequest.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\BasicRequest</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getClientConexion" name="method_getClientConexion" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getClientConexion()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getClientConexion() : \FuriosoJack\MasterModelsAWS\Core\Requests\App\Repository\Structures\Amazon\Abstracts\AbstractClientAmazon</pre>
+                <p><em>Retorna la conexion</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \FuriosoJack\MasterModelsAWS\Core\Requests\App\Repository\Structures\Amazon\Abstracts\AbstractClientAmazon
+                                            &mdash; <p>$conexion</p>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitConexionManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitConexionManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setParameter" name="method_setParameter" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">setParameter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setParameter(\FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic  <span class="argument">$parameter</span>) </pre>
+                <p><em>Añade el objeto de los parametros</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.ParameterBasic.html">\FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic</a></td>
+                                <td>$parameter </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitParameterManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitParameterManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getParameter" name="method_getParameter" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getParameter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getParameter() : \FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic</pre>
+                <p><em>Retorna el objeto de los parametros de la solicitud</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.ParameterBasic.html">\FuriosoJack\MasterModelsAWS\Core\Requests\ParameterBasic</a>
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitParameterManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitParameterManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setResponse" name="method_setResponse" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">setResponse()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setResponse(\Aws\Result  <span class="argument">$response = null</span>) </pre>
+                <p><em>Se encarga de insertar la respuesta de la peticion</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Aws\Result</td>
+                                <td>$response </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/FuriosoJack.MasterModelsAWS.Core.Requests.TraitResponseManager.html"><div class="path-wrapper">\FuriosoJack\MasterModelsAWS\Core\Requests\TraitResponseManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">SearchFaces.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Operations/Requests/Rekognition/Faces/SearchFaces.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/FuriosoJack.html">\FuriosoJack</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on December 16th, 2018 at 21:12.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
